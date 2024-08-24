@@ -1,0 +1,48 @@
+
+
+<div class="form-container">
+    <form [formGroup] ="createRecordForm">
+        <div>
+            <h4>Title</h4>
+            <input type="text" formControlName="title" required="">
+        </div>
+        <div>
+            <h4>Description</h4>
+            <textarea name="" id="" formControlName="description" required=""></textarea>
+        </div>
+        <div>
+            <h4>Priority Level</h4>
+            <select name="" id="" formControlName="priority" required="">
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+            </select>
+            
+        </div>
+        <div>
+            <h4>Due Date</h4>
+            <input type="date" formControlName="dueDate" required="">
+        </div>
+
+        <div>
+            <button type="button" (click)="createRecord()">SUBMIT</button>
+        </div>
+      
+    </form>
+</div>
+
+
+
+<div class="records-container" *ngIf="records.length > 0">
+    <h3>Submitted Records</h3>
+    <ul *ngFor="let record of records">
+        <li>
+            <p><strong>Title:</strong>{{record.title}}</p>
+            <p><strong>Descriptions:</strong>{{record.description}}</p>
+            <p><strong>Priority:</strong>{{record.priority}}</p>
+            <p><strong>Due Date:</strong>{{record.dueDate}}</p>
+        </li>
+       
+    </ul>
+
+</div>
