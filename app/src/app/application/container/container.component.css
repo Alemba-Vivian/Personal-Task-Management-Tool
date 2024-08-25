@@ -1,18 +1,127 @@
-body{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.form-container{
-    height: 600px;
-    width: 400px;
-    text-align: center;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-form{
-    border: 1px solid black;
+.sidebar{
+  padding: 15px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #171717;
+  color: lightgrey;
+
 }
-div{
-    margin-bottom: 20px;
+li>a{
+  color: lightgray;
+}
+
+.main{
+ margin-top: 20px;
+
+}
+.modal-color{
+  background-color:#27272a;
+}
+
+
+.todos{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  list-style-type: none;
+  gap: 10px;
+
+}
+.todos>li{
+  padding: 10px;
+  border-radius: 20px;
+}
+
+#btn-add-new{
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 10px;
+  background-color: #fda4af;
+  width: 180px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  color: black;
+}
+
+#btn{
+  margin-left: 10px;
+  background-color: none;
+  outline: none;
+  border: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* container.component.css */
+
+.high-priority {
+    border-left: 5px solid red;
+    background-color: #ffe6e6;
+    padding: 10px;
+    border-radius: 20px;
+  }
+  
+  .medium-priority {
+    border-left: 5px solid orange;
+    background-color: #fff3e6;
+    padding: 10px;
+    border-radius: 20px;
+  }
+  
+  .low-priority {
+    border-left: 5px solid green;
+    background-color: #e6ffe6;
+    padding: 10px;
+    border-radius: 20px;
+  }
+  
+  .completed-task {
+    text-decoration: line-through;
+    color: gray;
+  }
+  
+  .pending-task {
+    font-weight: bold;
+    color: black;
+  }
+  
+  /* Icons for status */
+  .completed-icon::before {
+    content: '✔️'; /* Checkmark for completed */
+    margin-right: 8px;
+    color: green;
+  }
+  
+  .pending-icon::before {
+    content: '⏳'; /* Hourglass for pending */
+    margin-right: 8px;
+    color: orange;
+  }
+.toggle{
+  outline: 1 px solid black;
+  padding: 8px;
 }

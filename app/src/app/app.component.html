@@ -1,1 +1,97 @@
 <app-container></app-container>
+
+
+
+<!-- <div class="form-container">
+
+    <form [formGroup] ="createRecordForm" *ngIf="editingIndex === null">
+        <div>
+            <h4>Title</h4>
+            <input type="text" formControlName="title" required="">
+        </div>
+        <div>
+            <h4>Description</h4>
+            <textarea name="" id="" formControlName="description" required=""></textarea>
+        </div>
+        <div>
+            <h4>Priority Level</h4>
+            <select name="" id="" formControlName="priority" required="">
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
+            
+        </div>
+        <div>
+            <h4>Due Date</h4>
+            <input type="date" formControlName="dueDate" required="">
+        </div>
+
+        <div>
+            <button type="button" (click)="createRecord()">SUBMIT</button>
+        </div>
+      
+    </form>
+
+
+
+
+    editRecordForm 
+    <form [formGroup] ="editRecordForm" *ngIf="editingIndex !== null">
+        <div>
+            <h4>Title</h4>
+            <input type="text" formControlName="title" required="">
+        </div>
+        <div>
+            <h4>Description</h4>
+            <textarea name="" id="" formControlName="description" required=""></textarea>
+        </div>
+        <div>
+            <h4>Priority Level</h4>
+            <select name="" id="" formControlName="priority" required="">
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
+            
+        </div>
+        <div>
+            <h4>Due Date</h4>
+            <input type="date" formControlName="dueDate" required="">
+        </div>
+
+        <div>
+            <button type="button" (click)="saveEditRecord()">SAVE</button>
+        </div>
+      
+    </form>
+</div> 
+
+
+<div class="records-container" *ngIf="records.length > 0" >
+    <h3>Submitted Records</h3>
+    <div class="todos"  *ngFor="let record of records; let i = index"
+      [ngClass]=" {
+          'high-priority': record.priority === 'High',
+          'medium-priority': record.priority === 'Medium',
+          'low-priority': record.priority === 'Low',
+          'completed-task': record.status === 'Completed',
+          'pending-task': record.status === 'Pending'
+      }
+      ">
+
+  <p>
+    <span [ngClass]="{'completed-icon': record.status === 'Completed', 'pending-icon': record.status === 'Pending'}"></span>
+    Title: {{ record.title }}
+  </p>
+            <p><strong>Descriptions:</strong>{{record.description}}</p>
+            <p><strong>Priority:</strong>{{record.priority}}</p>
+            <p><strong>Due Date:</strong>{{record.dueDate}}</p>
+            <p><strong>Status:</strong>{{record.status}}</p>
+            <button (click)="toggleStatus(record)">Toggle Status</button> 
+            <button (click)="editRecord(record, i)">Edit</button> 
+            <button (click)="deleteRecord(i)">Delete</button> 
+
+    </div>
+
+</div>-->

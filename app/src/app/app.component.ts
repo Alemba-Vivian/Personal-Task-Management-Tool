@@ -7,19 +7,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent  {
   title = 'app';
 
-
-
-
-
-
-
-
-
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
  
 }

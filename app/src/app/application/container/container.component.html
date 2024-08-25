@@ -1,48 +1,209 @@
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-3 col-lg-2 d-md-block sidebar">
+                <div class="top">
+                    <h3 id="dashboard">Dashboard</h3>
+                    <i class="fa fa-map-o" aria-hidden="true"></i>
+                </div>
+                <ul class="nav flex-column allTasks">
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#" id="today">
+                            <i class="fa-solid fa-map" aria-hidden="true"></i>
+                            Today
+                        </a>
+                    </li> -->
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#" id="tomo">
+                            <i class="fa-regular fa-clock" aria-hidden="true" ></i>
+                            Tomorrow
+                        </a>
+                    </li> -->
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#" id="thisWeek">
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                            This week
+                        </a>
+                    </li> -->
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#" id="planned">
+                            <i class="fa-solid fa-book" aria-hidden ="true"></i>
+                            Planned
+                        </a>
+                    </li> -->
 
 
-<div class="form-container">
-    <form [formGroup] ="createRecordForm">
-        <div>
-            <h4>Title</h4>
-            <input type="text" formControlName="title" required="">
+                 
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="showAll" (click)="filterTasks('')">
+                            <i class="fa fa-list" aria-hidden="true"></i>
+                            Show All
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="completed" (click)="filterTasks('Completed')">
+                            <i class="fa-solid fa-clipboard" aria-hidden="true"></i>
+                            Completed
+                        </a>
+                    </li>
+                    
+                </ul>
+            </nav>
+
+            <!-- Main content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-4 main">
+                <!-- Create Modal -->
+                <div bsModal #createModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-success" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header m-0 p-2">
+                                <h6 class="modal-title">Add Task</h6>
+                                <button type="button" class="close btn m-0 p-0" (click)="createModal.hide()" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form [formGroup]="createRecordForm">
+                                    <div>
+                                        <h4>Title</h4>
+                                        <input type="text" formControlName="title" required="">
+                                    </div>
+                                    <div>
+                                        <h4>Description</h4>
+                                        <textarea formControlName="description" required=""></textarea>
+                                    </div>
+                                    <div>
+                                        <h4>Priority Level</h4>
+                                        <select formControlName="priority" required="">
+                                            <option value="High">High</option>
+                                            <option value="Medium">Medium</option>
+                                            <option value="Low">Low</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <h4>Due Date</h4>
+                                        <input type="date" formControlName="dueDate" required="">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" (click)="createRecord()" class="btn col-md-4">Save</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
+                <!-- Edit Modal -->
+                <div bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-success" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header m-0 p-2">
+                                <h6 class="modal-title">Edit Task</h6>
+                                <button type="button" class="close btn m-0 p-0" (click)="editModal.hide()" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form [formGroup]="editRecordForm">
+                                    <div>
+                                        <h4>Title</h4>
+                                        <input type="text" formControlName="title" required="">
+                                    </div>
+                                    <div>
+                                        <h4>Description</h4>
+                                        <textarea formControlName="description" required=""></textarea>
+                                    </div>
+                                    <div>
+                                        <h4>Priority Level</h4>
+                                        <select formControlName="priority" required="">
+                                            <option value="High">High</option>
+                                            <option value="Medium">Medium</option>
+                                            <option value="Low">Low</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <h4>Due Date</h4>
+                                        <input type="date" formControlName="dueDate" required="">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary text-white" (click)="editModal.hide()">Close</button>
+                                <button type="button" class="btn col-md-4" (click)="saveEditRecord()">Save</button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
+                <!-- Main Content -->
+                <div class="animated fadeIn content">
+                    <div class="card">
+                        <div class="card-header nrb-btn-dark-success">
+                            <strong>Create New Task</strong>
+                            <span class="pointer float-end" (click)="back_btn()">
+                                <span class="fa fa-arrow-left"></span>
+                                &nbsp;<b>Back</b>
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-4 col-md-4 col-lg-2">
+                                    <button type="button" id="btn-add-new" class="btn" (click)="createModal.show()">
+                                        <i class="fa fa-plus"></i> Add New
+                                    </button>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-12">
+                            <div class="records-container" *ngIf="records.length > 0">
+                                <h3>Tasks</h3>
+                                <div class="row">
+                                <div class="col-sm-12 col-md-6 col-lg-4 mb-3 " *ngFor="let record of filteredRecords; let i = index"
+                                    [ngClass]="{
+                                        'high-priority': record.priority === 'High',
+                                        'medium-priority': record.priority === 'Medium',
+                                        'low-priority': record.priority === 'Low',
+                                        'completed-task': record.status === 'Completed',
+                                        'pending-task': record.status === 'Pending'
+                                    }">
+                                    <div class="card">
+                                    <div class="card-body">
+                                    <div>
+                                        <p>
+                                            <span [ngClass]="{'completed-icon': record.status === 'Completed', 'pending-icon': record.status === 'Pending'}"></span>
+                                            Title: {{ record.title }}
+                                        </p>
+                                        <p><strong>Descriptions:</strong>{{record.description}}</p>
+                                        <p><strong>Priority:</strong>{{record.priority}}</p>
+                                        <p><strong>Due Date:</strong>{{record.dueDate}}</p>
+                                        <p><strong>Status:</strong>{{record.status}}</p>
+                                        <br>
+                                        <div>
+                                            <button id="btn" class="text-success me" (click)="toggleStatus(record)"><i class="fa-solid fa-toggle-on"></i></button>
+                                            <button id="btn" class="text-dark me" (click)="editRecord(record.id, i)"><i class="fa fa-pencil"></i></button>
+                                            <button id="btn" class="text-danger" (click)="deleteRecord(i)"> <i class="fa fa-trash "></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    </div>
+                </div>
+            </main>
         </div>
-        <div>
-            <h4>Description</h4>
-            <textarea name="" id="" formControlName="description" required=""></textarea>
-        </div>
-        <div>
-            <h4>Priority Level</h4>
-            <select name="" id="" formControlName="priority" required="">
-                <option value="high">High</option>
-                <option value="medium">Medium</option>
-                <option value="low">Low</option>
-            </select>
-            
-        </div>
-        <div>
-            <h4>Due Date</h4>
-            <input type="date" formControlName="dueDate" required="">
-        </div>
-
-        <div>
-            <button type="button" (click)="createRecord()">SUBMIT</button>
-        </div>
-      
-    </form>
-</div>
+    </div>
 
 
-
-<div class="records-container" *ngIf="records.length > 0">
-    <h3>Submitted Records</h3>
-    <ul *ngFor="let record of records">
-        <li>
-            <p><strong>Title:</strong>{{record.title}}</p>
-            <p><strong>Descriptions:</strong>{{record.description}}</p>
-            <p><strong>Priority:</strong>{{record.priority}}</p>
-            <p><strong>Due Date:</strong>{{record.dueDate}}</p>
-        </li>
-       
-    </ul>
-
-</div>
