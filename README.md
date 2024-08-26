@@ -50,7 +50,7 @@ In the terminal, make sure you're still in the app directory.
 
 Run the following command to start the application:
 
-ng serve
+npm start
 
 
 ** Angular Live Development Server is listening on localhost:4200,
