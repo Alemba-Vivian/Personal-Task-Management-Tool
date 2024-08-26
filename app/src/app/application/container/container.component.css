@@ -8,9 +8,12 @@
   height: 100vh;
   background-color: #171717;
   color: #B4C424;
-  /* position: fixed; 
+  position: fixed; /* Make sure the sidebar is fixed */
   top: 0;
-  bottom: 0; */
+  left: 0; /* Align to the left */
+  bottom: 0; /* Extend to the bottom */
+  width: 250px; /* Set a fixed width for the sidebar */
+  overflow: auto; /* Allow scrolling if content overflows */
 }
 li>a{
   color: lightgray;
@@ -20,7 +23,12 @@ li>a{
   margin-top: 20px;
   min-height: 100vh; 
   box-sizing: border-box; 
+  margin-left: 250px; /* Add margin-left equal to the sidebar width */
 }
+
+
+
+/* MODALS */
 .bg-modal{
   background-color: #28282B;
   color: #B4C424;
@@ -31,6 +39,7 @@ li>a{
   font-weight: 600;
   color: black;
 }
+/* END OF MODALS */
 
 
 
@@ -60,9 +69,10 @@ li>a{
   
 }
 
-#btn{
+.btn-icon{
   margin-left: 10px;
-  background-color: none;
+  background-color: lightgray !important;
+  border-radius: 5px;
   outline: none;
   border: none;
 }
@@ -81,6 +91,13 @@ li>a{
   max-width: calc(33.333% - 20px); /* Ensure it doesn’t exceed the grid width */
 }
 
+
+
+
+
+
+
+/* SCREEN SIZES */
 /* Medium screens (2 columns) */
 @media (max-width: 992px) {
   .custom-grid .col {
@@ -96,6 +113,30 @@ li>a{
       max-width: calc(100% - 20px);
   }
 }
+/* Responsive adjustments for sidebar */
+@media (max-width: 992px) {
+  .sidebar {
+    width: 200px; /* Adjust width for smaller screens */
+  }
+  
+  .main {
+    margin-left: 200px; /* Adjust margin for smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%; /* Make the sidebar full width on very small screens */
+    height: auto; /* Allow height to auto adjust */
+    position: static; /* Remove fixed positioning */
+  }
+  
+  .main {
+    margin-left: 0; /* Remove margin on small screens */
+  }
+}
+
+/* END OF SCREEN SIZES */
 
 
 
@@ -154,9 +195,45 @@ textarea {
 
 
 
+/* close modal */
+.fa-close-it{
+  font-size: 14px;
+  color: black;
+  padding-left: 13px;
+  padding-top: 8px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+  padding-right: 13px;
+  font-weight: 600;
+  margin-left: 10px;
+  background-color: lightgrey;
+}
 
+/* icons */
+.fa-dashboard{
+  font-size: 30px;
+  font-weight: bold;
+  color: #B4C424;
+}
 
+/* SELECT OPTION */
+/* Style the select box */
+select {
+  background-color: #f0f0f0; /* Default background color */
+  color: #000; /* Text color */
+}
 
+/* Style the selected option */
+select option:checked {
+  background-color: #e0e0e0; /* Background color for the selected option */
+  color: #000; /* Text color */
+}
+
+/* Style the hover state for options */
+select option:hover {
+  background-color: #c0c0c0; /* Background color on hover */
+  color: #000; /* Text color */
+}
 
 
 

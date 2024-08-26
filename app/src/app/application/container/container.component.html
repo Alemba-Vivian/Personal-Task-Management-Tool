@@ -7,44 +7,16 @@
                     <i class="fa fa-map-o" aria-hidden="true"></i>
                 </div>
                 <ul class="nav flex-column allTasks">
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="#" id="today">
-                            <i class="fa-solid fa-map" aria-hidden="true"></i>
-                            Today
-                        </a>
-                    </li> -->
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="#" id="tomo">
-                            <i class="fa-regular fa-clock" aria-hidden="true" ></i>
-                            Tomorrow
-                        </a>
-                    </li> -->
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="#" id="thisWeek">
-                            <i class="fa fa-calendar" aria-hidden="true"></i>
-                            This week
-                        </a>
-                    </li> -->
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="#" id="planned">
-                            <i class="fa-solid fa-book" aria-hidden ="true"></i>
-                            Planned
-                        </a>
-                    </li> -->
-
-
-                 
-
                     <li class="nav-item">
                         <a class="nav-link" href="#" id="showAll" (click)="filterTasks('')">
-                            <i class="fa fa-list" aria-hidden="true"></i>
-                            Show All
+                            <i class="fa fa-list fa-dashboard" aria-hidden="true"></i>
+                            All Tasks
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="#" id="completed" (click)="filterTasks('Completed')">
-                            <i class="fa-solid fa-clipboard" aria-hidden="true"></i>
+                            <i class="fa-solid fa-clipboard fa-dashboard " aria-hidden="true"></i>
                             Completed
                         </a>
                     </li>
@@ -60,7 +32,7 @@
                             <div class="modal-header add-modal-header m-0 p-2">
                                 <h6 class="modal-title d-flex justify-content-center">Add Task</h6>
                                 <button type="button" class="close btn m-0 p-0" (click)="createModal.hide()" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
+                                    <span aria-hidden="true"><i class="fa-solid fa-close-it fa-xmark"></i></span>
                                 </button>
                             </div>
                             <div class="modal-body add-modal">
@@ -109,7 +81,7 @@
                             <div class="modal-header m-0 p-2">
                                 <h6 class="modal-title">Edit Task</h6>
                                 <button type="button" class="close btn m-0 p-0" (click)="editModal.hide()" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
+                                    <span aria-hidden="true"><i class="fa-solid fa-xmark fa-close-it"></i></span>
                                 </button>
                             </div>
                             <div class="modal-body add-modal">
@@ -174,7 +146,7 @@
                             <div class="row">
                                 <div class="col-12">
                             <div class="records-container" *ngIf="records.length > 0">
-                                <h3>Tasks</h3>
+                                <h4>My Todos</h4>
                                 <div class="custom-grid">
                                 <div class="col" *ngFor="let record of filteredRecords; let i = index"
                                     [ngClass]="{
@@ -195,10 +167,10 @@
                                         <p><strong>Due Date:</strong>{{record.dueDate}}</p>
                                         <p><strong>Status:</strong>{{record.status}}</p>
                                         <br>
-                                        <div>
-                                            <button id="btn" class="text-success me" (click)="toggleStatus(record)"><i class="fa-solid fa-toggle-on"></i></button>
-                                            <button id="btn" class="text-dark me" (click)="editRecord(record.id, i)"><i class="fa fa-pencil"></i></button>
-                                            <button id="btn" class="text-danger" (click)="deleteRecord(i)"> <i class="fa fa-trash "></i></button>
+                                        <div class="icoons-wrapper">
+                                            <button class="btn-icon text-success me" (click)="toggleStatus(record)"><i class="fa-solid fa-toggle-on"></i></button>
+                                            <button class="btn-icon text-dark me" (click)="editRecord(record.id, i)"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn-icon text-danger" (click)="deleteRecord(i)"> <i class="fa fa-trash "></i></button>
                                         </div>
                                     </div>
                                 </div>

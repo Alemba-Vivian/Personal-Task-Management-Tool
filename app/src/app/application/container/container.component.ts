@@ -5,6 +5,7 @@ import { CreateTaskPayload, Task } from './interfaces/application';
 import { Router } from '@angular/router';
 import { TaskService } from './services/todos.service';
 import { SweetalertService } from './services/sweetalerts.service';
+import { ToastService } from './services/toast.service';
 
 @Component({
   selector: 'app-container',
@@ -33,6 +34,7 @@ export class ContainerComponent implements OnInit {
            private router: Router,
            private taskService: TaskService,
            public sweetAlertService: SweetalertService,
+           public toastService: ToastService,
           ) {
 
     this.createRecordForm = this.formbuilder.group({
@@ -105,7 +107,8 @@ export class ContainerComponent implements OnInit {
   createRecord(){
     if(this.createRecordForm.invalid){
       this.formSubmitted = true;
-      alert("Kindly correct those errors to proceed")
+      const errorMessages = this.getFormErrors(this.createRecordForm);
+      this.toastService.showToastNotification('error', 'Kindly Correct the errors highlighted to proceed: ', errorMessages);
     }else{
       this.sweetAlertService.showConfirmation('Confirmation', 'Do you wish to proceed creating record?').then((res)=>{
         if(res){
@@ -147,8 +150,7 @@ export class ContainerComponent implements OnInit {
       this.editRecordForm.patchValue(task);
       this.editModal.show();
     }, (error)=>{
-      console.log("Error Fetching Task:", error);
-      alert("There was an error fetching the tasks details");
+      this.toastService.showToastNotification(error, 'There was an error fetching the tasks details', '');
     }
     )
     
@@ -157,7 +159,8 @@ export class ContainerComponent implements OnInit {
 
   saveEditRecord(){
     if(this.editRecordForm.invalid){
-      alert("Please correct those errors before saving");
+      const errorMessages = this.getFormErrors(this.editRecordForm);
+      this.toastService.showToastNotification('error', `Kindly Correct the errors highlighted to proceed: `, errorMessages);
       return;
     }
     this.sweetAlertService.showConfirmation('Confirmation', 'Do you wish to proceed updating record?').then((res)=>{
@@ -171,12 +174,19 @@ export class ContainerComponent implements OnInit {
           status: this.editRecordForm.get('status')!.value
         };
   
-        this.taskService.updateTask(updatedRecord.id, updatedRecord).subscribe(() => {
-          this.fetchRecord(); // Refresh the list of records
-          this.editModal.hide(); // Hide the modal
-          this.editRecordForm.reset();
-          this.editingIndex = null; // Reset editing index
-        });
+        this.taskService.updateTask(updatedRecord.id, updatedRecord).subscribe(
+          (data) => {
+            if(data){
+              this.fetchRecord(); // Refresh the list of records
+              this.editModal.hide(); // Hide the modal
+              this.editRecordForm.reset();
+              this.editingIndex = null; // Reset editing index
+            }
+        }, (error)=>{
+              console.error('Error updating record:', error);
+              this.toastService.showToastNotification('error', 'Error updating record. Please try again.', '');
+        }
+      );
       }
     })
   
@@ -204,6 +214,7 @@ export class ContainerComponent implements OnInit {
         if(res){
       this.taskService.deleteTask(taskId).subscribe((res)=>{
         this.records.splice(index, 1);  // Remove the record from the frontend array
+        this.toastService.showToastNotification('success', 'Successfully Deleted', '');
         this.fetchRecord();
       })
      }
@@ -216,7 +227,59 @@ export class ContainerComponent implements OnInit {
     this.deleteModal.show()
   }
 
- 
+
+
+
+  //FORM VALIDATION ERRORS MESSAGE METHOD
+  getFormErrors(form: FormGroup): string {
+    let errors = '';
+  
+    for (const controlName in form.controls) {
+      const control = form.controls[controlName];
+  
+      if (control.invalid && (control.dirty || control.touched)) {
+        const controlErrors = control.errors;
+        if (controlErrors) {
+          for (const errorKey in controlErrors) {
+            switch (errorKey) {
+              case 'required':
+                errors += `${this.formatFieldName(controlName)} can't be empty. `;
+                break;
+              case 'minlength':
+                const minLength = controlErrors[errorKey].requiredLength;
+                errors += `${this.formatFieldName(controlName)} must be at least ${minLength} characters long. `;
+                break;
+              case 'maxlength':
+                const maxLength = controlErrors[errorKey].requiredLength;
+                errors += `${this.formatFieldName(controlName)} cannot be more than ${maxLength} characters long. `;
+                break;
+              default:
+                errors += `${this.formatFieldName(controlName)} has an invalid value. `;
+                break;
+            }
+          }
+        }
+      }
+    }
+    return errors.trim();
+  }
+  
+  
+  private formatFieldName(fieldName: string): string {
+    switch (fieldName) {
+      case 'title':
+        return 'Title';
+      case 'description':
+        return 'Description';
+      case 'priority':
+        return 'Priority';
+      case 'dueDate':
+        return 'Due Date';
+      default:
+        return fieldName.charAt(0).toUpperCase() + fieldName.slice(1).replace(/([A-Z])/g, ' $1');
+    }
+  }
+  
  
 
 
