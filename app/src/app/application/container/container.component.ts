@@ -184,7 +184,7 @@ export class ContainerComponent implements OnInit {
 
   toggleStatus(record: Task){
     const newStatus = record.status === 'Pending' ? 'Completed' : 'Pending';
-  this.taskService.updateTask(record.id, { ...record, status: newStatus }).subscribe(
+     this.taskService.updateTask(record.id, { ...record, status: newStatus }).subscribe(
     () => {
       console.log('Task status updated successfully');
       record.status = newStatus;

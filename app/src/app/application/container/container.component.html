@@ -51,45 +51,52 @@
                     
                 </ul>
             </nav>
-
             <!-- Main content -->
             <main class="col-md-9 ms-sm-auto col-lg-10 px-4 main">
                 <!-- Create Modal -->
-                <div bsModal #createModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-success" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header m-0 p-2">
-                                <h6 class="modal-title">Add Task</h6>
+                <div bsModal #createModal="bs-modal" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-success add-modal" role="document">
+                        <div class="modal-content add-modal">
+                            <div class="modal-header add-modal-header m-0 p-2">
+                                <h6 class="modal-title d-flex justify-content-center">Add Task</h6>
                                 <button type="button" class="close btn m-0 p-0" (click)="createModal.hide()" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body add-modal">
                                 <form [formGroup]="createRecordForm">
-                                    <div>
-                                        <h4>Title</h4>
-                                        <input type="text" formControlName="title" required="">
+                                    <div class="mb-3 row">
+                                        <label for="title" class="col-sm-4 col-form-label">Title:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" id="title" class="form-control" formControlName="title" required>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <h4>Description</h4>
-                                        <textarea formControlName="description" required=""></textarea>
+                                    <div class="mb-3 row">
+                                        <label for="description" class="col-sm-4 col-form-label">Description:</label>
+                                        <div class="col-sm-8">
+                                            <textarea id="description" class="form-control" formControlName="description" required></textarea>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <h4>Priority Level</h4>
-                                        <select formControlName="priority" required="">
-                                            <option value="High">High</option>
-                                            <option value="Medium">Medium</option>
-                                            <option value="Low">Low</option>
-                                        </select>
+                                    <div class="mb-3 row">
+                                        <label for="priority" class="col-sm-4 col-form-label">Priority Level:</label>
+                                        <div class="col-sm-8">
+                                            <select id="priority" class="form-select" formControlName="priority" required>
+                                                <option value="High">High</option>
+                                                <option value="Medium">Medium</option>
+                                                <option value="Low">Low</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <h4>Due Date</h4>
-                                        <input type="date" formControlName="dueDate" required="">
+                                    <div class="mb-3 row">
+                                        <label for="dueDate" class="col-sm-4 col-form-label">Due Date:</label>
+                                        <div class="col-sm-8">
+                                            <input type="date" id="dueDate" class="form-control" formControlName="dueDate" required>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
-                            <div class="modal-footer">
-                                <button type="submit" (click)="createRecord()" class="btn col-md-4">Save</button>
+                            <div class="modal-footer d-flex justify-content-center add-modal-footer">
+                                <button type="submit" (click)="createRecord()" class="btn btn-create col-md-4">Save</button>
                             </div>
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
@@ -98,49 +105,57 @@
                 <!-- Edit Modal -->
                 <div bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-success" role="document">
-                        <div class="modal-content">
+                        <div class="modal-content add-modal">
                             <div class="modal-header m-0 p-2">
                                 <h6 class="modal-title">Edit Task</h6>
                                 <button type="button" class="close btn m-0 p-0" (click)="editModal.hide()" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body add-modal">
                                 <form [formGroup]="editRecordForm">
-                                    <div>
-                                        <h4>Title</h4>
-                                        <input type="text" formControlName="title" required="">
+                                    <div class="mb-3 row">
+                                        <label for="title" class="col-sm-4 col-form-label">Title:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" id="title" class="form-control" formControlName="title" required>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <h4>Description</h4>
-                                        <textarea formControlName="description" required=""></textarea>
+                                    <div class="mb-3 row">
+                                        <label for="description" class="col-sm-4 col-form-label">Description:</label>
+                                        <div class="col-sm-8">
+                                            <textarea id="description" class="form-control" formControlName="description" required></textarea>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <h4>Priority Level</h4>
-                                        <select formControlName="priority" required="">
-                                            <option value="High">High</option>
-                                            <option value="Medium">Medium</option>
-                                            <option value="Low">Low</option>
-                                        </select>
+                                    <div class="mb-3 row">
+                                        <label for="priority" class="col-sm-4 col-form-label">Priority Level:</label>
+                                        <div class="col-sm-8">
+                                            <select id="priority" class="form-select" formControlName="priority" required>
+                                                <option value="High">High</option>
+                                                <option value="Medium">Medium</option>
+                                                <option value="Low">Low</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <h4>Due Date</h4>
-                                        <input type="date" formControlName="dueDate" required="">
+                                    <div class="mb-3 row">
+                                        <label for="dueDate" class="col-sm-4 col-form-label">Due Date:</label>
+                                        <div class="col-sm-8">
+                                            <input type="date" id="dueDate" class="form-control" formControlName="dueDate" required>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary text-white" (click)="editModal.hide()">Close</button>
-                                <button type="button" class="btn col-md-4" (click)="saveEditRecord()">Save</button>
+                            <div class="modal-footer d-flex justify-content-center add-modal-footer">
+                                <button type="button" class="btn btnClose" (click)="editModal.hide()">Close</button>
+                                <button type="button" class="btn btnEdit" (click)="saveEditRecord()">Save</button>
                             </div>
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
 
                 <!-- Main Content -->
-                <div class="animated fadeIn content">
-                    <div class="card">
-                        <div class="card-header nrb-btn-dark-success">
+                <div class="animated fadeIn content ">
+                    <div class="card bg-modal" >
+                        <div class="card-header">
                             <strong>Create New Task</strong>
                             <span class="pointer float-end" (click)="back_btn()">
                                 <span class="fa fa-arrow-left"></span>
@@ -160,8 +175,8 @@
                                 <div class="col-12">
                             <div class="records-container" *ngIf="records.length > 0">
                                 <h3>Tasks</h3>
-                                <div class="row">
-                                <div class="col-sm-12 col-md-6 col-lg-4 mb-3 " *ngFor="let record of filteredRecords; let i = index"
+                                <div class="custom-grid">
+                                <div class="col" *ngFor="let record of filteredRecords; let i = index"
                                     [ngClass]="{
                                         'high-priority': record.priority === 'High',
                                         'medium-priority': record.priority === 'Medium',
@@ -169,9 +184,8 @@
                                         'completed-task': record.status === 'Completed',
                                         'pending-task': record.status === 'Pending'
                                     }">
-                                    <div class="card">
-                                    <div class="card-body">
-                                    <div>
+            
+                                    <div class="tasks-added">
                                         <p>
                                             <span [ngClass]="{'completed-icon': record.status === 'Completed', 'pending-icon': record.status === 'Pending'}"></span>
                                             Title: {{ record.title }}
@@ -194,13 +208,6 @@
                             </div>
                         </div>
                         </div>
-                    </div>
-
-
-
-
-
-                    </div>
                 </div>
             </main>
         </div>

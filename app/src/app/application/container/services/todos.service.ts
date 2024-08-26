@@ -7,7 +7,7 @@ import { Task } from '../interfaces/application';
   providedIn: 'root'
 })
 export class TaskService {
-  private apiUrl = 'http://localhost:8000/api/todos'; // Adjust URL as needed
+  private apiUrl = 'http://localhost:8000/api/todos/'; 
 
   constructor(private http: HttpClient) { }
 
@@ -24,7 +24,7 @@ export class TaskService {
   }
 
   updateTask(id: number, updatedTask: Task): Observable<Task> {
-    return this.http.put<Task>(`${this.apiUrl}/tasks/${id}/`, updatedTask);
+     return this.http.put<Task>(`${this.apiUrl}${id}/`, updatedTask);
   }
 
   deleteTask(id: number): Observable<void> {

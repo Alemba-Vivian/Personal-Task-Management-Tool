@@ -6,24 +6,32 @@
 .sidebar{
   padding: 15px;
   height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
   background-color: #171717;
-  color: lightgrey;
-
+  color: #B4C424;
+  /* position: fixed; 
+  top: 0;
+  bottom: 0; */
 }
 li>a{
   color: lightgray;
 }
 
 .main{
- margin-top: 20px;
+  margin-top: 20px;
+  min-height: 100vh; 
+  box-sizing: border-box; 
+}
+.bg-modal{
+  background-color: #28282B;
+  color: #B4C424;
+}
+.card-header{
+  background-color: #B4C424;
+  font-size: 20px;
+  font-weight: 600;
+  color: black;
+}
 
-}
-.modal-color{
-  background-color:#27272a;
-}
 
 
 .todos{
@@ -42,12 +50,14 @@ li>a{
   font-size: 20px;
   font-weight: 600;
   margin-top: 10px;
-  background-color: #fda4af;
-  width: 180px;
-  height: 40px;
+  background-color: #B4C424;
   border: none;
   border-radius: 10px;
   color: black;
+}
+.tasks-added{
+  color: black;
+  
 }
 
 #btn{
@@ -59,10 +69,88 @@ li>a{
 
 
 
+.custom-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Adjust the gap value as needed */
+}
+
+.custom-grid .col {
+  box-sizing: border-box;
+  flex: 1 1 calc(33.333% - 20px); /* 3 columns with a 20px gap */
+  max-width: calc(33.333% - 20px); /* Ensure it doesn’t exceed the grid width */
+}
+
+/* Medium screens (2 columns) */
+@media (max-width: 992px) {
+  .custom-grid .col {
+      flex: 1 1 calc(50% - 20px);
+      max-width: calc(50% - 20px);
+  }
+}
+
+/* Small screens (1 column) */
+@media (max-width: 576px) {
+  .custom-grid .col {
+      flex: 1 1 calc(100% - 20px);
+      max-width: calc(100% - 20px);
+  }
+}
 
 
 
 
+/* INPUTS */
+.col-form-label {
+  text-align: left; /* Ensure label text is left-aligned */
+}
+
+.form-control, .form-select, textarea {
+  width: 100%;
+  background-color: lightgrey;
+}
+
+textarea {
+  
+}
+
+.card-body {
+  padding: 20px;
+}
+
+/* END INPUTS */
+
+
+
+
+.add-modal{
+  background-color: #171717;
+  color: #B4C424;
+}
+.add-modal-header{
+  color: #B4C424;
+  text-align: center !important;
+  font-weight: 600;
+  font-size: 20px;
+}
+.add-modal-footer{
+  background-color: #171717;
+  
+}
+
+
+
+.btn-create{
+  background-color: #B4C424;
+  font-size: 20px;
+  font-weight: 600;
+}
+.btnEdit{
+  background-color: #B4C424;
+}
+.btnClose{
+  background-color: lightgray;
+}
 
 
 
@@ -79,24 +167,27 @@ li>a{
 /* container.component.css */
 
 .high-priority {
-    border-left: 5px solid red;
-    background-color: #ffe6e6;
+    border-left: 5px solid #B4C424;
+    background-color: #C4B454;
     padding: 10px;
     border-radius: 20px;
+    color: black;
   }
   
   .medium-priority {
-    border-left: 5px solid orange;
-    background-color: #fff3e6;
+    border-left: 5px solid #B4C424;
+    background-color: #93C572 !important;
     padding: 10px;
     border-radius: 20px;
+    color: #B4C424;
   }
   
   .low-priority {
-    border-left: 5px solid green;
-    background-color: #e6ffe6;
+    border-left: 5px solid #B4C424;
+    background-color: #8A9A5B!important;
     padding: 10px;
     border-radius: 20px;
+    color: #B4C424;
   }
   
   .completed-task {

@@ -13,7 +13,10 @@ showAlert(title:any,message:any,alertype:any){
   Swal.fire({
     title: title,
     text: message,
-    icon: alertype
+    icon: alertype,
+    customClass: {
+      container: 'custom-swal-container'
+    }
   })
 
 }
@@ -24,9 +27,12 @@ showConfirmation(title:any,message:any){
       text:message,
       icon:'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes,Proceed'
+      confirmButtonColor: '#B4C424',
+      cancelButtonColor: '#171717',
+      confirmButtonText: 'Yes,Proceed',
+      customClass: {
+        container: 'custom-swal-container'
+      }
     }).then((result) => {
       if (result.value) {
         resolve(true);
